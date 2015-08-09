@@ -1,0 +1,40 @@
+/*
+ * Product Color Filters plugin front-end CSS
+ *
+*/
+
+.color-filters-wrap {
+	width: 100%;
+	margin: 0 0 20px 0 !important;
+	float: left;
+}
+
+.color-item {
+	width: 100%;
+	margin: 4px 0 4px 0;
+	float: left;
+}
+
+.color-wrap {
+	width: 50px;
+	height: 50px;
+	float: left;
+}
+
+.color-link a {
+	margin: 10px 0 0 10px !important;
+	text-decoration: underline;
+	float: left;
+}
+
+.color-link a:hover {
+	text-decoration: none;
+}
+
+.rcorners {
+    border-radius: 25px;
+    padding: 5px; 
+    width: 50px;
+	height: 50px;
+	float: left;
+}
