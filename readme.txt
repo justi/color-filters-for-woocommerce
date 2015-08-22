@@ -1,5 +1,5 @@
 === Plugin Name ===
-Contributors: elementous, dominykasgel
+Contributors: elementous, dominykasgel, darius_fx
 Donate link: http://www.elementous.com
 Tags: woocommerce, category filter, filters, product, color, filter, color filter
 Requires at least: 3.0.1
