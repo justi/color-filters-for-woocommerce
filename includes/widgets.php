@@ -32,7 +32,7 @@ class NM_Color_Filters_Widget extends WP_Widget {
 		if ( ! empty( $title ) )
 			echo $args['before_title'] . $title . $args['after_title'];
 			
-		$get_terms = get_terms( 'product_color', array( 'hide_empty' => false ) );
+		$get_terms = get_terms( 'product_color', apply_filters( 'elm_cf_get_terms_args', array( 'hide_empty' => false ) ) );
 		
 		if ( $get_terms ) {
 		
@@ -45,16 +45,32 @@ class NM_Color_Filters_Widget extends WP_Widget {
 		$color = @$saved_colors[$term->term_id];
 		
 		if ( !empty( $color ) ) {
-			$style = 'style="background: ' . $color . ';"';
+			$style = apply_filters( 'elm_cf_color_style_attribute', 'style="background: ' . $color . ';"' );
 		} else {
 			$style = '';
 		}
 ?>
 
 		<div class="color-item">
-			<div class="color-wrap">
-				<div class="rcorners" <?php echo $style; ?>></div>
-			</div> <span class="color-link"><a href="<?php echo esc_url( get_term_link( $term ) ); ?> "><?php echo $term->name; ?></a></span>
+		
+			<?php if ( $instance['layout'] == 'color_and_text' ) { ?>
+				<div class="color-wrap">
+					<div class="rcorners" <?php echo $style; ?>><a href="<?php echo esc_url( get_term_link( $term ) ); ?> "><!-- --></a></div>
+				</div>
+				
+				<span class="color-link color_and_text_link">
+					<a href="<?php echo esc_url( get_term_link( $term ) ); ?> "><?php echo $term->name; ?></a>
+				</span>
+			<?php } else if ( $instance['layout'] == 'color' ) { ?>
+				<div class="color-wrap">
+					<div class="rcorners" <?php echo $style; ?>><a href="<?php echo esc_url( get_term_link( $term ) ); ?> "><!-- --></a></div>
+				</div>
+			<?php } else if ( $instance['layout'] == 'text' ) { ?>	
+				<span class="color-link">
+					<a href="<?php echo esc_url( get_term_link( $term ) ); ?> "><?php echo $term->name; ?></a>
+				</span>
+			<?php } ?>
+				
 		</div>
 
 <?php } ?>
@@ -83,6 +99,22 @@ class NM_Color_Filters_Widget extends WP_Widget {
 		<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label> 
 		<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 		</p>
+		</p>
+		
+		<p>
+		<label for="<?php echo $this->get_field_id( 'Layout' ); ?>"><?php _e( 'Layout:' ); ?></label><br />
+		<select id="<?php echo $this->get_field_id( 'layout' ); ?>" name="<?php echo $this->get_field_name( 'layout' ); ?>" class="widefat">
+		<?php
+		$options = array( 'color_and_text' => __('Color and text', 'elm'), 'color' => __('Color', 'elm'), 'text' => __('Text', 'elm') );
+				
+		foreach ( $options as $key => $value ) :
+			$selected = ( $instance[ 'layout' ] == $key ) ? 'selected' : '';
+		
+			echo '<option value="'. $key .'" '. $selected .'>'. $value .'</option>' . "\r\n";
+		endforeach;
+		?>
+		</select> 
+		</p>
 		<?php 
 	}
 
@@ -99,6 +131,7 @@ class NM_Color_Filters_Widget extends WP_Widget {
 	public function update( $new_instance, $old_instance ) {
 		$instance = array();
 		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
+		$instance['layout'] = ( ! empty( $new_instance['layout'] ) ) ? strip_tags( $new_instance['layout'] ) : '';
 		
 		return $instance;
 	}

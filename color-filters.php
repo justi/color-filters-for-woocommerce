@@ -28,6 +28,7 @@ class NM_Color_Filters {
 		
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_custom_css_js' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'plugin_scripts' ) );
+		
 	}
 	
 	/*
@@ -180,7 +181,7 @@ class NM_Color_Filters {
 			'show_ui'           => true,
 			'show_admin_column' => true,
 			'query_var'         => true,
-			'rewrite'           => array( 'slug' => 'product_color' ),
+			'rewrite'           => array( 'slug' => 'product-color' ),
 		);
 	 
 		register_taxonomy( 'product_color', array( 'product' ), $args );
@@ -194,10 +195,14 @@ class NM_Color_Filters {
 	function install() {
 		if ( get_option( 'nm_color_filters' ) != 'installed' ) {
 			update_option( 'nm_color_filters', 'installed' );
-			
-			// Flush rewrite rules for our new taxonomy
-			flush_rewrite_rules();
 		}
+		
+		// Register taxonomy here so that we can flush permalink rules
+		$this->register_taxonomy();
+		
+		global $wp_rewrite;
+		
+		$wp_rewrite->flush_rules( false );
 	}
 }
 
