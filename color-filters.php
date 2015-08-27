@@ -181,7 +181,7 @@ class NM_Color_Filters {
 			'show_ui'           => true,
 			'show_admin_column' => true,
 			'query_var'         => true,
-			'rewrite'           => array( 'slug' => 'product-color' ),
+			'rewrite'           => array( 'slug' => 'product-color' )
 		);
 	 
 		register_taxonomy( 'product_color', array( 'product' ), $args );
