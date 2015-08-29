@@ -1,6 +1,6 @@
 === Plugin Name ===
 Contributors: elementous, dominykasgel, darius_fx
-Donate link: http://www.elementous.com
+Donate link: https://www.elementous.com
 Tags: woocommerce, category, product, color, filter, color filter, product filter, price filter, woocommerce filters, layered navigation
 Requires at least: 3.0.1
 Tested up to: 4.3
