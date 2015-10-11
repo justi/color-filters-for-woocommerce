@@ -44,6 +44,10 @@ Go to Appearance > Widgets and use WooCommerce Color Filters widget.
 
 == Changelog ==
 
+= 1.1.1 =
+* Fixed an issue with widget wrapper closing
+* Feature: Added the color next to its text in admin side
+
 = 1.1 =
 * WPML support
 

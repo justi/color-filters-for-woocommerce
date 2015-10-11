@@ -25,10 +25,9 @@ class NM_Color_Filters {
 		add_action( 'created_product_color', array( $this, 'save_product_color' ), 10, 2);
 		add_action( 'product_color_edit_form', array( $this, 'product_color_edit_colorpicker_js' ), 10, 2 );
 		add_action( 'product_color_add_form', array( $this, 'product_color_edit_colorpicker_js' ), 10, 2 );
-		
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_custom_css_js' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'plugin_scripts' ) );
-		
+		add_action( 'admin_footer', array( $this, 'add_colors_admin_side' ) );
 	}
 	
 	/*
@@ -36,7 +35,7 @@ class NM_Color_Filters {
      */
 	function notice_no_woocommerce() {
 	?>
-        <div class="message error"><p><?php printf( __( 'Color Filters by elm is enabled but not effective. It requires <a href="%s">WooCommerce</a> plugin in order to work.', 'elm' ), 'http://www.woothemes.com/woocommerce/' ); ?></p></div>
+        <div class="message error"><p><?php printf( __( 'Color Filters by Elementous is enabled but not effective. It requires <a href="%s">WooCommerce</a> plugin in order to work.', 'elm' ), 'http://www.woothemes.com/woocommerce/' ); ?></p></div>
     <?php
 	}
 
@@ -154,6 +153,28 @@ class NM_Color_Filters {
 			});
 		</script>
 <?php
+	}
+	
+	/**
+	 * Add color to its text in admin side.
+	 *
+	 */
+	function add_colors_admin_side() {
+		global $post, $pagenow;
+	
+		$colors = get_option( 'nm_taxonomy_colors' );
+		
+		if ( $colors && $pagenow == 'post.php' && get_post_type( $post ) == 'product' ) :
+	?>
+		<script type="text/javascript">
+			jQuery( document ).ready(function( $ ) {
+				<?php foreach( $colors as $term_id => $color_code ) : ?>
+				jQuery('#product_color-<?php echo $term_id; ?>, #popular-product_color-<?php echo $term_id; ?>').prepend('<div style="width:20px;height:15px;background:<?php echo $color_code; ?>;float: left;margin: 5px 5px 0 0;"></div>');
+				<?php endforeach; ?>
+			});
+		</script>
+	<?php
+		endif;
 	}
 	
 	/**
