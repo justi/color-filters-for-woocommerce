@@ -35,7 +35,7 @@ class NM_Color_Filters {
      */
 	function notice_no_woocommerce() {
 	?>
-        <div class="message error"><p><?php printf( __( 'Color Filters by Elementous is enabled but not effective. It requires <a href="%s">WooCommerce</a> plugin in order to work.', 'elm' ), 'http://www.woothemes.com/woocommerce/' ); ?></p></div>
+        <div class="message error"><p><?php printf( __( 'Color Filters by <a href="%s" target="_blank">Elementous</a> is enabled but not effective. It requires <a href="%s" target="_blank">WooCommerce</a> plugin in order to work.', 'elm' ), 'https://www.elementous.com', 'http://www.woothemes.com/woocommerce/' ); ?></p></div>
     <?php
 	}
 
@@ -78,9 +78,15 @@ class NM_Color_Filters {
 	 * @param integer $term_id
 	 */
 	function save_product_color( $term_id ) {
-		$color = esc_attr( $_POST['normal_fill'] );
+		$color = @esc_attr( $_POST['normal_fill'] );
 		
 		$saved_colors = get_option( 'nm_taxonomy_colors' );
+		
+		// Quick edit
+		// Do not overwrite color with empty value when saving via quick edit
+		if ( @ !empty( $saved_colors[$term_id] ) && !$color )
+			return;
+		
 		$saved_colors[$term_id] = $color;
 		
 		update_option( 'nm_taxonomy_colors', $saved_colors );
@@ -164,7 +170,7 @@ class NM_Color_Filters {
 	
 		$colors = get_option( 'nm_taxonomy_colors' );
 		
-		if ( $colors && $pagenow == 'post.php' && get_post_type( $post ) == 'product' ) :
+		if ( $colors && $pagenow == 'post.php' || $pagenow == 'post-new.php'  && get_post_type( $post ) == 'product' ) :
 	?>
 		<script type="text/javascript">
 			jQuery( document ).ready(function( $ ) {

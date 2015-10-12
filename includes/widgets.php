@@ -76,9 +76,9 @@ class NM_Color_Filters_Widget extends WP_Widget {
 <?php } ?>
 		</div>
 <?php
-		echo $args['after_widget'];
-		
 		}
+		
+		echo $args['after_widget'];
 	}
 
 	/**
