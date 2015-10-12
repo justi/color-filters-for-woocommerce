@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== Color Filters for WooCommerce ===
 Contributors: Elementous, dominykasgel, darius_fx
 Donate link: https://www.elementous.com
 Tags: woocommerce, category, product, color, filter, color filter, product filter, price filter, woocommerce filters, layered navigation, taxonomy
@@ -8,11 +8,13 @@ Stable tag: 1.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-This plugin allows you to filter WooCommerce products by color.
+This plugin allows you to filter WooCommerce products by color from sidebar widget.
 
 == Description ==
 
-You will be able to add colors and assign them to products, then filter out products by color.
+Color Filters for WooCommerce plugin allows you to filter WooCommerce products by color. Now you can use a simple and beautiful widget on your WordPress online store powered with WooCommerce for product filtering by color. Everything you need is to create color filters by writing color name and selecting the corresponding color from color picker and select appropriate color or colors from the list when creating or editing your WooCommerce products. It's like adding attributes to your products, but in this case you can show available product colors in widget at any sidebar or any widgetized area of your website and most important is that you can filter products of selected color. This plugin is highly recommended for clothing stores and similar where you actually need to show available product colors. It will save a lot of time for your online store visitors and enhances their shopping experience.
+
+Color Filters for WooCommerce is fully compatible with WPML and you can use it without any doubt on the multilanguage online store.
 
 We have a public [GIT repository](https://github.com/elementous/color-filters) for this plugin and you're wellcome to contribute your patch.
 
@@ -27,17 +29,17 @@ We have a public [GIT repository](https://github.com/elementous/color-filters) f
 = How to add colors? =
 
 1. Go to Products > Colors
-2. Add a new color 
-3. Add a new product and assign a color
+2. Add a new color by setting its name and picking up corresponding color from color picker
+3. Add a new product or edit existing and assign appropriate color to your product by selecting available colors from the sidebar panel on the product editing screen 
 
-= How to change color size or customize the filters widget? =
+= How to change color icon size or customize the filters widget? =
 
 1. The main CSS classes are: rcorners (color), rcorners a (color link), color-link (color text link). 
 2. You should use these CSS class names in your theme CSS or custom CSS plugin and use an !important declaration for CSS values.
 
 = How to display filters? =
 
-Go to Appearance > Widgets and use WooCommerce Color Filters widget.
+Go to Appearance > Widgets and use Color Filters for WooCommerce plugin widget. You can easily change widget title and set the style of widget layout right from the widget settings. There are available three widget layout types to show color icon and color name, to show only name or only icon of available colors.
 
 == Screenshots ==
 
