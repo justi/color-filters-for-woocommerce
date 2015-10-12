@@ -1,7 +1,7 @@
 === Plugin Name ===
-Contributors: elementous, dominykasgel, darius_fx
+Contributors: Elementous, dominykasgel, darius_fx
 Donate link: https://www.elementous.com
-Tags: woocommerce, category, product, color, filter, color filter, product filter, price filter, woocommerce filters, layered navigation
+Tags: woocommerce, category, product, color, filter, color filter, product filter, price filter, woocommerce filters, layered navigation, taxonomy
 Requires at least: 3.0.1
 Tested up to: 4.3
 Stable tag: 1.1
@@ -14,10 +14,13 @@ This plugin allows you to filter WooCommerce products by color.
 
 You will be able to add colors and assign them to products, then filter out products by color.
 
+We have a public [GIT repository](https://github.com/elementous/color-filters) for this plugin and you're wellcome to contribute your patch.
+
 == Installation ==
 
-1. Upload `color-filters` to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
+1. Make sure you have the latest version of WooCommerce plugin installed and active
+2. Upload `color-filters` to the `/wp-content/plugins/` directory
+3. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Frequently Asked Questions ==
 
