@@ -16,7 +16,7 @@ Color Filters for WooCommerce plugin allows you to filter WooCommerce products b
 
 Color Filters for WooCommerce is fully compatible with WPML and you can use it without any doubt on the multilanguage online store.
 
-We have a public [GIT repository](https://github.com/elementous/color-filters) for this plugin and you're wellcome to contribute your patch.
+We have a public [GIT repository](https://github.com/elementous/color-filters) for this plugin and you're welcome to contribute your patch.
 
 == Installation ==
 
