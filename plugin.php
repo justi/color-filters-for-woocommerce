@@ -1,8 +1,8 @@
 <?php
 /*
-  Plugin Name: WooCommerce Color Filters
+  Plugin Name: Color filters for WooCommerce
   Plugin URI: https://www.elementous.com
-  Description: This plugin allows you to filter WooCommerce products by color.
+  Description: This plugin allows you to filter WooCommerce products by color from sidebar widget.
   Author: Elementous
   Author URI: https://www.elementous.com
   Version: 1.1.1
