@@ -32,7 +32,13 @@ class NM_Color_Filters_Widget extends WP_Widget {
 		if ( ! empty( $title ) )
 			echo $args['before_title'] . $title . $args['after_title'];
 			
-		$get_terms = get_terms( 'product_color', apply_filters( 'elm_cf_get_terms_args', array( 'hide_empty' => false ) ) );
+		if ( $instance[ 'hide_empty' ] ) {
+			$hide_empty = true;
+		} else {
+			$hide_empty = false;
+		}
+			
+		$get_terms = get_terms( 'product_color', apply_filters( 'elm_cf_get_terms_args', array( 'hide_empty' => $hide_empty ) ) );
 		
 		if ( $get_terms ) {
 		
@@ -59,7 +65,16 @@ class NM_Color_Filters_Widget extends WP_Widget {
 				</div>
 				
 				<span class="color-link color_and_text_link">
-					<a href="<?php echo esc_url( get_term_link( $term ) ); ?> "><?php echo $term->name; ?></a>
+					<a href="<?php echo esc_url( get_term_link( $term ) ); ?> ">
+					<?php 
+					
+					echo $term->name;
+					
+					if ( $instance['product_count'] ) {
+						echo ' ('. $term->count .')';
+					}
+
+					?></a>
 				</span>
 			<?php } else if ( $instance['layout'] == 'color' ) { ?>
 				<div class="color-wrap">
@@ -67,7 +82,16 @@ class NM_Color_Filters_Widget extends WP_Widget {
 				</div>
 			<?php } else if ( $instance['layout'] == 'text' ) { ?>	
 				<span class="color-link">
-					<a href="<?php echo esc_url( get_term_link( $term ) ); ?> "><?php echo $term->name; ?></a>
+					<a href="<?php echo esc_url( get_term_link( $term ) ); ?> ">
+					<?php 
+					
+					echo $term->name;
+					
+					if ( $instance['product_count'] ) {
+						echo ' ('. $term->count .')';
+					}
+
+					?></a>
 				</span>
 			<?php } ?>
 				
@@ -100,7 +124,6 @@ class NM_Color_Filters_Widget extends WP_Widget {
 		<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label> 
 		<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 		</p>
-		</p>
 		
 		<p>
 		<label for="<?php echo $this->get_field_id( 'Layout' ); ?>"><?php _e( 'Layout:' ); ?></label><br />
@@ -116,6 +139,17 @@ class NM_Color_Filters_Widget extends WP_Widget {
 		?>
 		</select> 
 		</p>
+		
+		<p>
+		<input id="<?php echo $this->get_field_id( 'hide_empty' ); ?>" name="<?php echo $this->get_field_name( 'hide_empty' ); ?>" type="checkbox" value="1" <?php checked( 1, @$instance[ 'hide_empty' ] ); ?> />
+		<label for="<?php echo $this->get_field_id( 'hide_empty' ); ?>"><?php _e( 'Hide empty', 'elm' ); ?></label>
+		</p>
+		
+		<p>
+		<input id="<?php echo $this->get_field_id( 'product_count' ); ?>" name="<?php echo $this->get_field_name( 'product_count' ); ?>" type="checkbox" value="1" <?php checked( 1, @$instance[ 'product_count' ] ); ?> />
+		<label for="<?php echo $this->get_field_id( 'product_count' ); ?>"><?php _e( 'Include the number of assigned products', 'elm' ); ?></label>
+		</p>
+		
 		<?php 
 	}
 
@@ -133,6 +167,8 @@ class NM_Color_Filters_Widget extends WP_Widget {
 		$instance = array();
 		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
 		$instance['layout'] = ( ! empty( $new_instance['layout'] ) ) ? strip_tags( $new_instance['layout'] ) : '';
+		$instance['hide_empty'] = ( ! empty( $new_instance['hide_empty'] ) ) ? strip_tags( $new_instance['hide_empty'] ) : '';
+		$instance['product_count'] = ( ! empty( $new_instance['product_count'] ) ) ? strip_tags( $new_instance['product_count'] ) : '';
 		
 		return $instance;
 	}
