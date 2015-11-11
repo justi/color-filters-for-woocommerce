@@ -4,6 +4,7 @@ class NM_Color_Filters {
 
 	function __construct() {
 		add_action( 'init', array( $this, 'init' ) );
+		add_action( 'init', array( $this, 'update_check' ) );
 	}
 	
 	/**
@@ -222,6 +223,7 @@ class NM_Color_Filters {
 	function install() {
 		if ( get_option( 'nm_color_filters' ) != 'installed' ) {
 			update_option( 'nm_color_filters', 'installed' );
+			update_option( 'elm_color_filters_version', CF_VERSION );
 		}
 		
 		// Register taxonomy here so that we can flush permalink rules
@@ -230,6 +232,17 @@ class NM_Color_Filters {
 		global $wp_rewrite;
 		
 		$wp_rewrite->flush_rules( false );
+	}
+	
+	/**
+	 * Handle updates.
+	 *
+	 */
+	function update_check() {
+		// Version < 1.2
+		if ( ! get_option( 'elm_color_filters_version' ) ) {
+			update_option( 'elm_color_filters_version', CF_VERSION );
+		}
 	}
 }
 
