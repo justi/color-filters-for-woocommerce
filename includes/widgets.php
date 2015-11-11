@@ -55,9 +55,14 @@ class NM_Color_Filters_Widget extends WP_Widget {
 		} else {
 			$style = '';
 		}
+		
+		$color_item_inline_css = '';
+		
+		if ( $instance['layout'] == 'color' ) 
+			$color_item_inline_css .= apply_filters( 'elm_cf_color_item_inline_css', 'width: 20%;' );
 ?>
 
-		<div class="color-item">
+		<div class="color-item" style="<?php echo $color_item_inline_css; ?>">
 		
 			<?php if ( $instance['layout'] == 'color_and_text' ) { ?>
 				<div class="color-wrap">
@@ -76,11 +81,15 @@ class NM_Color_Filters_Widget extends WP_Widget {
 
 					?></a>
 				</span>
-			<?php } else if ( $instance['layout'] == 'color' ) { ?>
+			<?php } else if ( $instance['layout'] == 'color' ) { 
+			
+			?>
 				<div class="color-wrap">
 					<div class="rcorners" <?php echo $style; ?>><a href="<?php echo esc_url( get_term_link( $term ) ); ?> "><!-- --></a></div>
 				</div>
-			<?php } else if ( $instance['layout'] == 'text' ) { ?>	
+			<?php 
+			} else if ( $instance['layout'] == 'text' ) { 
+			?>	
 				<span class="color-link">
 					<a href="<?php echo esc_url( get_term_link( $term ) ); ?> ">
 					<?php 
