@@ -1,7 +1,7 @@
 === Color Filters for WooCommerce ===
 Contributors: Elementous, dominykasgel, darius_fx
 Donate link: https://www.elementous.com
-Tags: woocommerce, category, product, color, filter, color filter, product filter, price filter, woocommerce filters, layered navigation, taxonomy
+Tags: woocommerce, category, product, color, filter, color filter, product filter, price filter, woocommerce filters, layered navigation, taxonomy, elementous
 Requires at least: 3.0.1
 Tested up to: 4.3
 Stable tag: 1.1
@@ -16,7 +16,9 @@ Color Filters for WooCommerce plugin allows you to filter WooCommerce products b
 
 Color Filters for WooCommerce is fully compatible with WPML and you can use it without any doubt on the multilanguage online store.
 
-We have a public [GIT repository](https://github.com/elementous/color-filters) for this plugin and you're welcome to contribute your patch.
+[Color Filters Documentation](https://www.elementous.com/documentation/#color-filters-for-woocommerce)
+
+We also have a public [GIT repository](https://github.com/elementous/color-filters) for this plugin and you're wellcome to contribute your patch.
 
 == Installation ==
 
@@ -48,6 +50,12 @@ Go to Appearance > Widgets and use Color Filters for WooCommerce plugin widget. 
 3. Filters on front-end
 
 == Changelog ==
+
+= 1.2 =
+* Feature: Added an option to Color Filters Widget for hiding empty colors
+* Feature: Added an option to Color Filters Widget for including the number of assigned products
+* Tweak: Reduce space between colors when layout is color
+* Tweak: Added language (.po) file
 
 = 1.1.1 =
 * Feature: Added the color next to its text in admin side
