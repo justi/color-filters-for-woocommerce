@@ -28,20 +28,7 @@ We also have a public [GIT repository](https://github.com/elementous/color-filte
 
 == Frequently Asked Questions ==
 
-= How to add colors? =
-
-1. Go to Products > Colors
-2. Add a new color by setting its name and picking up corresponding color from color picker
-3. Add a new product or edit existing and assign appropriate color to your product by selecting available colors from the sidebar panel on the product editing screen 
-
-= How to change color icon size or customize the filters widget? =
-
-1. The main CSS classes are: rcorners (color), rcorners a (color link), color-link (color text link). 
-2. You should use these CSS class names in your theme CSS or custom CSS plugin and use an !important declaration for CSS values.
-
-= How to display filters? =
-
-Go to Appearance > Widgets and use Color Filters for WooCommerce plugin widget. You can easily change widget title and set the style of widget layout right from the widget settings. There are available three widget layout types to show color icon and color name, to show only name or only icon of available colors.
+For FAQ and more information, please go to [Color Filters Documentation](https://www.elementous.com/documentation/#color-filters-for-woocommerce)
 
 == Screenshots ==
 
