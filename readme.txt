@@ -3,8 +3,8 @@ Contributors: Elementous, dominykasgel, darius_fx
 Donate link: https://www.elementous.com
 Tags: woocommerce, category, product, color, filter, color filter, product filter, price filter, woocommerce filters, layered navigation, taxonomy, elementous
 Requires at least: 3.0.1
-Tested up to: 4.3
-Stable tag: 1.1
+Tested up to: 4.4
+Stable tag: 1.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
