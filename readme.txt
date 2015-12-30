@@ -38,6 +38,10 @@ For FAQ and more information, please go to [Color Filters Documentation](https:/
 
 == Changelog ==
 
+= 1.2.1 =
+* Fixed typo
+* Tweak: better sanitizing color value field
+
 = 1.2 =
 * Feature: Added an option to Color Filters Widget for hiding empty colors
 * Feature: Added an option to Color Filters Widget for including the number of assigned products

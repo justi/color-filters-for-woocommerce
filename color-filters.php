@@ -79,7 +79,7 @@ class NM_Color_Filters {
 	 * @param integer $term_id
 	 */
 	function save_product_color( $term_id ) {
-		$color = @esc_attr( $_POST['normal_fill'] );
+		$color = @sanitize_text_field( $_POST['normal_fill'] );
 		
 		$saved_colors = get_option( 'nm_taxonomy_colors' );
 		
