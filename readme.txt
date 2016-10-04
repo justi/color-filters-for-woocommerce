@@ -3,8 +3,8 @@ Contributors: Elementous, dominykasgel, darius_fx
 Donate link: https://www.elementous.com
 Tags: woocommerce, category, product, color, filter, color filter, product filter, price filter, woocommerce filters, layered navigation, taxonomy, elementous
 Requires at least: 3.0.1
-Tested up to: 4.4
-Stable tag: 1.2
+Tested up to: 4.6.1
+Stable tag: 1.2.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -37,6 +37,12 @@ For FAQ and more information, please go to [Color Filters Documentation](https:/
 3. Filters on front-end
 
 == Changelog ==
+
+= 1.2.2 =
+* Bug fix: Color Filters widget echoing extra space in anchor tag - Reported by dkcreatto
+* Bug fix: Color picker is not showing in color edit page
+* Bug fix: Permalinks are not flushed on plugin activation
+* Bug fix: Widget bottom is broken
 
 = 1.2.1 =
 * Fixed typo

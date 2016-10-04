@@ -21,7 +21,7 @@ class NM_Color_Filters {
 		$this->register_taxonomy(); // Register product color taxonomy
 		
 		add_action( 'product_color_edit_form_fields', array( $this, 'product_color_edit_form_fields' ), 10, 2 );
-		add_action( 'product_color_add_form_fields', array( $this, 'product_color_edit_form_fields' ), 10, 2 );
+		add_action( 'product_color_add_form_fields', array( $this, 'product_color_add_form_fields' ), 10, 2 );
 		add_action( 'edited_product_color', array( $this, 'save_product_color' ), 10, 2);
 		add_action( 'created_product_color', array( $this, 'save_product_color' ), 10, 2);
 		add_action( 'product_color_edit_form', array( $this, 'product_color_edit_colorpicker_js' ), 10, 2 );
@@ -49,27 +49,25 @@ class NM_Color_Filters {
 	}
 	
 	/**
-	 * Back-end display CSS.
+	 * Load CSS and JS files for color picker.
 	 *
 	 * @param string $hook
 	 */
 	function load_custom_css_js( $hook ) {
-		if ( 'edit-tags.php' != $hook ) {
+		if ( 'edit-tags.php' != $hook && 'term.php' != $hook ) {
 			return;
 		}
-		
-		global $pagenow;
-	
-		if ( $pagenow == 'edit-tags.php' ) {
-		
+
+		if ( isset( $_GET['taxonomy'] ) && $_GET['taxonomy'] == 'product_color' ) {	
+			global $pagenow;
+
 			wp_register_style( 'css_colorpicker', CF_PLUGIN_URL . '/assets/css/colorpicker.min.css' );
 			wp_enqueue_style( 'css_colorpicker' );
-		
+			
 			wp_register_style( 'color_filters', CF_PLUGIN_URL . '/assets/css/admin.css' );
 			wp_enqueue_style( 'color_filters' );
-			
+				
 			wp_enqueue_script( 'js_colorpicker', CF_PLUGIN_URL . '/assets/js/colorpicker.min.js' );
-			
 		}
 	}
 	
@@ -94,7 +92,38 @@ class NM_Color_Filters {
 	}
 	
 	/**
-	 * Add extra fields for product color taxonomy.
+	 * Add extra fields for product color to add color taxonomy screen.
+	 *
+	 * @param object $tag
+	 */
+	function product_color_add_form_fields( $tag ) {
+	
+		$term_id = @$tag->term_id;
+		
+		$color = '';
+		
+		if ( $term_id ) {
+			$saved_colors = get_option( 'nm_taxonomy_colors' );
+			$color = @$saved_colors[$term_id];
+		}
+			
+?>
+	
+		<div class="form-field term-color-wrap cf-color-filters">
+			<label for="normal_fill_color_picker">Color</label>
+			<div>
+				<div id="normal_fill_color_picker" class="colorSelector small-text"><div></div></div>
+				
+				<input class="cf-color small-text" name="normal_fill" id="normal_fill_color" type="text" value="<?php echo $color; ?>" size="40" />
+				<br /><br />
+			</div>
+		</div>
+
+<?php
+	}
+
+	/**
+	 * Add extra fields for product color to edit color taxonomy screen.
 	 *
 	 * @param object $tag
 	 */
@@ -112,13 +141,12 @@ class NM_Color_Filters {
 ?>
 	
 		<tr class="form-field term-color-wrap cf-color-filters">
-			<div class="cf-color-filters">
-				<th scope="row"><label for="normal_fill_color_picker">Color</label></th>
+			<th scope="row"><label for="normal_fill_color_picker">Color</label></th>
 				<td><div id="normal_fill_color_picker" class="colorSelector small-text"><div></div></div>
 				
 				<input class="cf-color small-text" name="normal_fill" id="normal_fill_color" type="text" value="<?php echo $color; ?>" size="40" />
-				<br /><br /></td>
-			</div>
+				<br /><br />
+			</td>
 		</tr>
 
 <?php
@@ -229,9 +257,7 @@ class NM_Color_Filters {
 		// Register taxonomy here so that we can flush permalink rules
 		$this->register_taxonomy();
 		
-		global $wp_rewrite;
-		
-		$wp_rewrite->flush_rules( false );
+		flush_rewrite_rules();
 	}
 	
 	/**
@@ -239,7 +265,6 @@ class NM_Color_Filters {
 	 *
 	 */
 	function update_check() {
-		// Version < 1.2
 		if ( ! get_option( 'elm_color_filters_version' ) ) {
 			update_option( 'elm_color_filters_version', CF_VERSION );
 		}

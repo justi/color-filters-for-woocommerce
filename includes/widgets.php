@@ -66,12 +66,11 @@ class NM_Color_Filters_Widget extends WP_Widget {
 		
 			<?php if ( $instance['layout'] == 'color_and_text' ) { ?>
 				<div class="color-wrap">
-					<div class="rcorners" <?php echo $style; ?>><a href="<?php echo esc_url( get_term_link( $term ) ); ?> "><!-- --></a></div>
+					<div class="rcorners" <?php echo $style; ?>><a href="<?php echo esc_url( get_term_link( $term ) ); ?>"><!-- --></a></div>
 				</div>
 				
 				<span class="color-link color_and_text_link">
-					<a href="<?php echo esc_url( get_term_link( $term ) ); ?> ">
-					<?php 
+					<a href="<?php echo esc_url( get_term_link( $term ) ); ?>"><?php 
 					
 					echo $term->name;
 					
@@ -85,14 +84,13 @@ class NM_Color_Filters_Widget extends WP_Widget {
 			
 			?>
 				<div class="color-wrap">
-					<div class="rcorners" <?php echo $style; ?>><a href="<?php echo esc_url( get_term_link( $term ) ); ?> "><!-- --></a></div>
+					<div class="rcorners" <?php echo $style; ?>><a href="<?php echo esc_url( get_term_link( $term ) ); ?>"><!-- --></a></div>
 				</div>
 			<?php 
 			} else if ( $instance['layout'] == 'text' ) { 
 			?>	
 				<span class="color-link">
-					<a href="<?php echo esc_url( get_term_link( $term ) ); ?> ">
-					<?php 
+					<a href="<?php echo esc_url( get_term_link( $term ) ); ?>"><?php 
 					
 					echo $term->name;
 					

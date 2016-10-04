@@ -5,10 +5,10 @@
   Description: This plugin allows you to filter WooCommerce products by color from sidebar widget.
   Author: Elementous
   Author URI: https://www.elementous.com
-  Version: 1.2.1
+  Version: 1.2.2
 */
 
-define( 'CF_VERSION', '1.2.1' );
+define( 'CF_VERSION', '1.2.2' );
 define( 'CF_PLUGIN_PATH', dirname( __FILE__ ) );
 define( 'CF_INCLUDES_PATH', CF_PLUGIN_PATH . '/includes' );
 define( 'CF_PLUGIN_FOLDER', basename( CF_PLUGIN_PATH ) );
