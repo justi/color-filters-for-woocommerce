@@ -29,6 +29,8 @@ class NM_Color_Filters {
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_custom_css_js' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'plugin_scripts' ) );
 		add_action( 'admin_footer', array( $this, 'add_colors_admin_side' ) );
+		add_filter( 'manage_edit-product_color_columns', array( $this, 'add_column_color_name') );
+		add_filter( 'manage_product_color_custom_column', array($this, 'add_column_color_content'), 10, 3);
 	}
 	
 	/*
@@ -269,5 +271,20 @@ class NM_Color_Filters {
 			update_option( 'elm_color_filters_version', CF_VERSION );
 		}
 	}
-}
 
+	function add_column_color_name($cols) {
+
+		$cols['color'] = __('Color');
+
+		return $cols;
+	}
+
+	function add_column_color_content($content, $column_name, $term_id) {
+		$saved_colors = get_option( 'nm_taxonomy_colors' );
+
+		if ( 'color' == $column_name ) {
+			$hex_code = $saved_colors[$term_id];
+			echo '<div style="width:40px; height:40px; border-radius: 20px;background:' . $hex_code .';float:left;"></div>';
+		}
+	}
+}
