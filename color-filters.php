@@ -31,6 +31,7 @@ class NM_Color_Filters {
 		add_action( 'admin_footer', array( $this, 'add_colors_admin_side' ) );
 		add_filter( 'manage_edit-product_color_columns', array( $this, 'add_column_color_name') );
 		add_filter( 'manage_product_color_custom_column', array($this, 'add_column_color_content'), 10, 3);
+		add_action( 'wp_footer', array($this, 'footer_scripts') );
 	}
 	
 	/*
@@ -71,6 +72,26 @@ class NM_Color_Filters {
 				
 			wp_enqueue_script( 'js_colorpicker', CF_PLUGIN_URL . '/assets/js/colorpicker.min.js' );
 		}
+	}
+
+	function footer_scripts(){
+		$saved_colors = get_option( 'nm_taxonomy_colors' );
+		$term_id = get_queried_object_id();
+
+	   	if (!empty($term_id)) {
+			$hex_code = $saved_colors[$term_id];
+			?>
+			<script type="text/javascript">
+				jQuery( document ).ready(function( $ ) {
+					var header_el = jQuery( this ).find( '.woocommerce-products-header' );
+					var h1 = header_el.find('h1');
+					h1.append(
+						'<?php echo '<div style="width:40px; height:40px; border-radius: 20px;background:'. $hex_code .';float:left;margin-top: 6px; margin-right: 10px;"></div>'?>'
+					);
+				});
+			</script>
+			<?php
+	   	}
 	}
 	
 	/**
